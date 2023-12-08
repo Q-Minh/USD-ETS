@@ -1,0 +1,3 @@
+libigl >= 2.4
+numpy >= 1.24
+usd-core >= 23.11
