@@ -102,25 +102,6 @@ class UsdRenderer:
         elif up_axis == "Z":
             UsdGeom.SetStageUpAxis(self.stage, UsdGeom.Tokens.z)
 
-        # add default lights
-        light_0 = UsdLux.DistantLight.Define(stage, "/light_0")
-        light_0.GetPrim().CreateAttribute("intensity", Sdf.ValueTypeNames.Float, custom=False).Set(2500.0)
-        light_0.GetPrim().CreateAttribute("color", Sdf.ValueTypeNames.Color3f, custom=False).Set(
-            Gf.Vec3f(0.98, 0.85, 0.7)
-        )
-
-        UsdGeom.Xform(light_0.GetPrim()).AddRotateYOp().Set(value=(70.0))
-        UsdGeom.Xform(light_0.GetPrim()).AddRotateXOp().Set(value=(-45.0))
-
-        light_1 = UsdLux.DistantLight.Define(stage, "/light_1")
-        light_1.GetPrim().CreateAttribute("intensity", Sdf.ValueTypeNames.Float, custom=False).Set(2500.0)
-        light_1.GetPrim().CreateAttribute("color", Sdf.ValueTypeNames.Color3f, custom=False).Set(
-            Gf.Vec3f(0.62, 0.82, 0.98)
-        )
-
-        UsdGeom.Xform(light_1.GetPrim()).AddRotateYOp().Set(value=(-70.0))
-        UsdGeom.Xform(light_1.GetPrim()).AddRotateXOp().Set(value=(-45.0))
-
     def begin_frame(self, time):
         self.stage.SetEndTimeCode(time * self.fps)
         self.time = time * self.fps
