@@ -4,7 +4,6 @@ import igl
 import os
 
 def load_pba_simulation_eager(path: str):
-
     filenames = os.listdir(path)
     files = [None]*len(filenames)
     for i, filename in enumerate(filenames):
@@ -29,7 +28,7 @@ def load_pba_simulation_lazy(path: str):
         frame, entity = int(tokens[-3]), int(tokens[-2])
         files[i] = (frame, entity, os.path.join(path, filename))
 
-    nframes = max(files, key = lambda x: x[0])[0]
+    nframes = max(files, key = lambda x: x[0])[0] + 1
     files = sorted(files, key = lambda x: (x[0], x[1]))
     frames = [{} for _ in range(nframes)]
     for (frame, entity, filepath) in files:
