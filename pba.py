@@ -50,7 +50,7 @@ def render_pba_simulation_to_usd(renderer: UsdRenderer, folder: str, lazy: bool,
                 renderer.render_mesh(entity_id, V, F, update_topology=True)
             renderer.end_frame()
     else:
-        frames = load_pba_simulation_eager(folder)
+        frames = load_pba_simulation_lazy(folder)
         dt = 1.0 / fps
         time = 0.0
         for entities in frames:
